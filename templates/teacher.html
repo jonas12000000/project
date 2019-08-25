@@ -1,0 +1,15 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Login
+{% endblock %}
+{% block main %}
+    <main>
+        <form action="/teacher" method="post" class="form1">
+            <input type="text" name="username" autofocus placeholder="Username">
+            <div class="warning"><h3>{{ umsg }}</h3></div>
+            <input type="password" name="password" placeholder="Password">
+            <div class="warning"><h3>{{ pmsg }}</h3></div>
+            <button type="submit">Log In</button>
+        </form>
+    </main>
+{% endblock %}

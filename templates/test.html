@@ -1,0 +1,25 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Add Result
+{% endblock %}
+{% block main %}
+        <main>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>name</th>
+                        <th>father name</th>
+                        <th>subject</th>
+                        <th>mark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for i in name %}
+                        <td>{{ i }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+{% endblock %}

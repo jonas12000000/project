@@ -1,0 +1,110 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*:focus{
+    outline: none;
+    border: none;
+}
+.teacherh{
+    border-bottom: 1px solid #212529;
+    height: 6em;
+    background-color: #212529;
+    padding: 2em;
+    text-align: center;
+}
+.teacherh a{
+    text-decoration: none;
+    color: #28a745;
+    background-color: #212529;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    padding: 0.4em;
+    display: block;
+}
+.teacherh button{
+    border: 1px solid #212529;
+    border-radius: 5px;
+    background-color: #212529;
+}
+#add_student{
+    float: left;
+}
+#logout, #login{
+    float: right;
+}
+.teacherh a:hover{
+    background-color: #28a745;
+    text-decoration: none;
+    color: white;
+}
+.form1{
+    margin-top: 2em;
+    margin-left: 35%;
+    width: 30%;
+    padding: 2em;
+    border: 1px solid #212529;
+    background-color: #212529;
+    text-align: center;
+    border-radius: 10px;
+}
+.form1 input, select{
+    width: 80%;
+    height: 2.5em;
+    border-radius: 10px;
+}
+.form1 input:focus, select:focus{
+    border: 1px solid #28a745;
+    border-radius: 10px;
+}
+.form1 button{
+    width: 6em;
+    background-color: #212529;
+    color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+}
+.form1 button:hover{
+    background-color: #28a745;
+    color: white;
+}
+div h3{
+    font-size: 85%;
+    color: whitesmoke;
+}
+main{
+    text-align: center;
+}
+.success{
+    font-size: 120%;
+    font-weight: 120%;
+    background: #d34a51;
+}
+div .success h3{
+    color: whitesmoke;
+}
+div .warning h3{
+    font-size: 70%;
+    color: whitesmoke;
+}
+#view_all, #views{
+    text-align: center;
+    padding: 1em;
+    padding-top: 2em;
+}
+div h2{
+    font-size: 200%;
+    font-style: oblique;
+    font: #212529;
+}
+div table{
+    margin: 1em;
+    border: 1px solid #212529;
+    border-radius: 5px;
+}
+div table th{
+    color: white;
+    background-color: #212529;
+}
+

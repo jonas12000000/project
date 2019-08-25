@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <header  class="teacherh">
+            {% if session.user_id %}
+                <button id="add_student"><a href="/add_student">Add Student</a></button>
+                <button id="logout"><a href="/logout">Log Out</a></button>
+            {% else %}
+                <button id="login"><a href="/teacher">Login</a></button>
+            {% endif %}
+        </header>
+        {% block main %}
+        {% endblock %}
+    </body>
+</html>

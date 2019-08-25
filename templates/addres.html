@@ -1,0 +1,111 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Add Result
+{% endblock %}
+{% block main %}
+        <main>
+            <div class="success"><h3>{{ success }}</h3></div>
+            <form action="/add_result" method="post" class="form1">
+                <select name="subject" autofocus>
+                    <option selected disabled value="">Select a Subject</option>
+                    <option value="physics">Physics</option>
+                    <option value="maths">Maths</option>
+                    <option value="biology">Biology</option>
+                    <option value="geography">Geography</option>
+                </select><br>
+                <div class="warning"><h3>{{ smsg }}</h3></div>
+                <input type="text" name="exam_id" placeholder="exam id"><br>
+                <div class="warning"><h3>{{ emsg }}</h3></div>
+                <input type="text" name="student_id" placeholder="student id"><br>
+                <div class="warning"><h3>{{ stmsg }}</h3></div>
+                <input type="number" step="0.1" name="mark" min="0" max="100" placeholder="mark"><br>
+                <div class="warning"><h3>{{ mmsg }}</h3></div>
+                <button type="submit">Submit</button>
+            </form>
+            <form id="view_all" class="form1">
+                <select id="subject" required name="subject">
+                    <option selected disabled value="">Select a Subject</option>
+                    <option value="physics">Physics</option>
+                    <option value="maths">Maths</option>
+                    <option value="biology">Biology</option>
+                    <option value="geography">Geography</option>
+                </select><br>
+                <div class="warning"><h3></h3></div>
+                <input type="text" id="exam_id" placeholder="Type exam code" name="exam_code" required><br>
+                <div class="warning"><h3></h3></div>
+                <button type="submit">View All</button>
+            </form>
+            <div id="added"></div>
+        </main>
+<script>
+// javascript to handle adding result and displaying
+document.addEventListener("DOMContentLoaded", function(){
+    document.querySelector("#view_all").onsubmit = function(){
+        document.querySelector('#added').innerHTML = '';
+        const request = new XMLHttpRequest();
+        const subject = document.querySelector("#subject").value;
+        const exam_code = document.querySelector('#exam_id').value;
+
+
+        request.open('POST', '/added_students');
+        request.onload = function(){
+            const data = JSON.parse(request.responseText);
+
+            if(data.success == false){
+                var h2 = document.createElement('h2');
+
+                h2.innerHTML = "Sorry, Can't find the result with provided input";
+                document.querySelector('#added').appendChild(h2);
+            }
+            else{
+                var table = document.createElement('table');
+
+                table.setAttribute('class', 'table');
+
+                var arrHead = new Array();
+                arrHead = ['Name', 'Father name', 'Subject', 'Mark'];
+
+                var name = data.name;
+                var father = data.father;
+                var subject = data.subject;
+                var mark = data.mark;
+
+                var arrValue = new Array();
+                var i;
+
+                for(i = 0; i < name.length; i++){
+                    arrValue.push([name[i], father[i], subject[i], mark[i]]);
+                }
+
+                var tr = table.insertRow(-1);
+
+                for (var h = 0; h < arrHead.length; h++) {
+                var th = document.createElement('th');              // TABLE HEADER.
+                th.innerHTML = arrHead[h];
+                tr.appendChild(th);
+                }
+
+                for (var c = 0; c <= arrValue.length - 1; c++) {
+                    tr = table.insertRow(-1);
+
+                    for (var j = 0; j < arrHead.length; j++) {
+                        var td = document.createElement('td');          // TABLE DEFINITION.
+                        td = tr.insertCell(-1);
+                        td.innerHTML = arrValue[c][j];                  // ADD VALUES TO EACH CELL.
+                    }
+                }
+                document.querySelector('#added').appendChild(table);
+            }
+        }
+
+        const data = new FormData();
+        data.append('subject', subject);
+        data.append('exam_code', exam_code);
+
+        request.send(data);
+        return false;
+    }
+    return false;
+});
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Payment
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="success"><h3>{{ success }}</h3></div>
+        <form action="/fee" method="post" class="form1">
+            <input type="text" name="student_id" autofocus placeholder="Write student ID"><br>
+            <div class="warning"><h3>{{ smsg }}</h3></div>
+            <select name="month">
+                <option selected disabled value="">Select month</option>
+                <option value="jan">January</option>
+                <option value="feb">February</option>
+                <option value="mar">March</option>
+                <option value="apr">April</option>
+                <option value="may">May</option>
+                <option value="jun">June</option>
+                <option value="jul">July</option>
+                <option value="aug">August</option>
+                <option value="sep">September</option>
+                <option value="oct">October</option>
+                <option value="dec">December</option>
+            </select><br>
+            <div class="warning"><h3>{{ mmsg }}</h3></div>
+            <button type="submit">Submit</button>
+        </form>
+        <form id="views" class="form1">
+            <input type="text" id="sid" placeholder="Write the student ID" required>
+            <div class="warning"><h3></h3></div>
+            <button type="submit">View</button>
+        </form>
+        <div id="fee"></div>
+    </main>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    document.querySelector("#views").onsubmit = function(){
+        document.querySelector('#fee').innerHTML = '';
+        const request = new XMLHttpRequest();
+        const student_id = document.querySelector("#sid").value;
+
+        request.open('POST', '/view_fee');
+        request.onload = function(){
+            const data = JSON.parse(request.responseText);
+
+            if(data.success == false){
+                var h2 = document.createElement('h2');
+
+                h2.innerHTML = "Sorry, Can't find the result with provided id";
+                document.querySelector('#fee').appendChild(h2);
+            }
+            else{
+                var table = document.createElement('table');
+
+                table.setAttribute('class', 'table');
+
+                var arrHead = new Array();
+                arrHead = ['Name', 'Father name', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                var arrValue = new Array();
+                arrValue.push([data.name, data.father, data.jan, data.feb, data.mar, data.apr, data.may, data.jun, data.jul, data.aug, data.sep, data.oct, data.nov, data.dec]);
+
+                var tr = table.insertRow(-1);
+
+                for (var h = 0; h < arrHead.length; h++) {
+                var th = document.createElement('th');              // TABLE HEADER.
+                th.innerHTML = arrHead[h];
+                tr.appendChild(th);
+                }
+
+                for (var c = 0; c <= arrValue.length - 1; c++) {
+                    tr = table.insertRow(-1);
+
+                    for (var j = 0; j < arrHead.length; j++) {
+                        var td = document.createElement('td');          // TABLE DEFINITION.
+                        td = tr.insertCell(-1);
+                        td.innerHTML = arrValue[c][j];                  // ADD VALUES TO EACH CELL.
+                    }
+                }
+                document.querySelector('#fee').appendChild(table);
+            }
+        }
+
+        const data = new FormData();
+        data.append('student_id', student_id);
+
+        request.send(data);
+        return false;
+    }
+    return false;
+});
+</script>
+{% endblock %}

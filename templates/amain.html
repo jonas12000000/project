@@ -1,0 +1,27 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Admin Page
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="success"><h3>{{ success }}</h3></div>
+        <h1>Some Foundation</h1>
+        <h2>Admin Page</h2>
+        <form action="/add_teacher" method="post" class="form1">
+            <select name="role" autofocus>
+                <option selected disabled>Select a role</option>
+                <option value="cashier">Cashier</option>
+                <option value="teacher">Teacher</option>
+                <option value="assistant">Assistant</option>
+            </select><br>
+            <div class="warning"><h3>{{ rmsg }}</h3></div>
+            <input type="text" name="username" placeholder="Type a username"><br>
+            <div class="warning"><h3>{{ umsg }}</h3></div>
+            <input type="password" name="password" placeholder="Type a password"><br>
+            <div class="warning"><h3>{{ pmsg }}</h3></div>
+            <input type="password" name="repass" placeholder="Type the password again"><br>
+            <div class="warning"><h3>{{ remsg }}</h3></div>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+{% endblock %}

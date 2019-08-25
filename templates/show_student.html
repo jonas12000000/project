@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}
+    Student Information
+{% endblock %}
+{% block main %}
+<section class="show_student">
+    <div id="show_student">
+        {% if emsg %}
+            <h3>{{ emsg }}</h3>
+        {% else %}
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Father Name</th>
+                        <th>Grandfather Name</th>
+                        <th>State</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.father_name }}</td>
+                        <td>{{ row.grandfather_name }}</td>
+                        <td>{{ row.state }}</td>
+                        <td>{{ row.city }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

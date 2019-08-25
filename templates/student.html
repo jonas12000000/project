@@ -1,0 +1,27 @@
+{% extends "layout1.html" %}
+{% block title %}
+    Add Student
+{% endblock %}
+{% block main %}
+        <main>
+            <div class="success"><h3>{{ success }}</h3></div>
+            <form action="/add_student" method="post" class="form1">
+                <input type="text" name="name" autofocus placeholder="Write student name"><br>
+                <div class="warning"><h3>{{ nmsg }}</h3></div>
+                <input type="text" name="fname" placeholder="Write student's father name"><br>
+                <div class="warning"><h3>{{ fmsg }}</h3></div>
+                <input type="text" name="gname" placeholder="Write student's grandfather name"><br>
+                <div class="warning"><h3>{{ gmsg }}</h3></div>
+                <select name="state">
+                    <option selected disabled value="">Select State</option>
+                    <option value="cal">Calfornia</option>
+                    <option value="washington">Washington</option>
+                    <option value="texas">Texas</option>
+                </select><br>
+                <div class="warning"><h3>{{ smsg }}</h3></div>
+                <input type="city" name="city" placeholder="Write student's city name"><br>
+                <div class="warning"><h3>{{ cmsg }}</h3></div>
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+{% endblock %}
